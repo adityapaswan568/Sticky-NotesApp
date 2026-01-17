@@ -1,0 +1,179 @@
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --accent-color: #6c5ce7;
+    --note-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+}
+
+#add-note-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#add-note-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(108, 92, 231, 0.3);
+}
+
+#add-note-btn:active {
+    transform: translateY(0);
+}
+
+#app {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.note {
+    background-color: #ffffff; /* Default, will be overridden by inline style */
+    border-radius: 16px;
+    padding: 1.25rem;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--note-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeIn 0.3s ease-out;
+    position: relative;
+    color: #333;
+}
+
+.note:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    z-index: 10;
+}
+
+.note textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    resize: none;
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: inherit;
+    outline: none;
+    width: 100%;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.note:hover .note-footer {
+    opacity: 1;
+}
+
+.note-btn {
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    color: inherit;
+}
+
+.note-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.color-picker {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.color-option {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.color-option:hover {
+    transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Scrollbar styling for textarea */
+.note textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.note textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.note textarea::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
